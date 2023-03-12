@@ -1,0 +1,371 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> dic
+Rule 1     dic -> Es
+Rule 2     Es -> E SEPARATOR Es
+Rule 3     Es -> E
+Rule 4     E -> ITEMS
+Rule 5     ITEMS -> ITEM BREAK_LINE ITEMS
+Rule 6     ITEMS -> ITEM
+Rule 7     ITEM -> AT_CONC
+Rule 8     AT_CONC -> VAL : VAL
+Rule 9     ITEM -> LING
+Rule 10    LING -> IDLING : BREAK_LINE TS
+Rule 11    TS -> T TS
+Rule 12    TS -> T
+Rule 13    T -> # VAL BREAK_LINE AT_TS
+Rule 14    AT_TS -> AT_T BREAK_LINE AT_TS
+Rule 15    AT_TS -> <empty>
+Rule 16    AT_T -> + VAL : VAL
+
+Terminals, with rules where they appear
+
+#                    : 13
++                    : 16
+:                    : 8 10 16
+BREAK_LINE           : 5 10 13 14
+IDLING               : 10
+SEPARATOR            : 2
+VAL                  : 8 8 13 16 16
+error                : 
+
+Nonterminals, with rules where they appear
+
+AT_CONC              : 7
+AT_T                 : 14
+AT_TS                : 13 14
+E                    : 2 3
+Es                   : 1 2
+ITEM                 : 5 6
+ITEMS                : 4 5
+LING                 : 9
+T                    : 11 12
+TS                   : 10 11
+dic                  : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . dic
+    (1) dic -> . Es
+    (2) Es -> . E SEPARATOR Es
+    (3) Es -> . E
+    (4) E -> . ITEMS
+    (5) ITEMS -> . ITEM BREAK_LINE ITEMS
+    (6) ITEMS -> . ITEM
+    (7) ITEM -> . AT_CONC
+    (9) ITEM -> . LING
+    (8) AT_CONC -> . VAL : VAL
+    (10) LING -> . IDLING : BREAK_LINE TS
+
+    VAL             shift and go to state 8
+    IDLING          shift and go to state 9
+
+    dic                            shift and go to state 1
+    Es                             shift and go to state 2
+    E                              shift and go to state 3
+    ITEMS                          shift and go to state 4
+    ITEM                           shift and go to state 5
+    AT_CONC                        shift and go to state 6
+    LING                           shift and go to state 7
+
+state 1
+
+    (0) S' -> dic .
+
+
+
+state 2
+
+    (1) dic -> Es .
+
+    $end            reduce using rule 1 (dic -> Es .)
+
+
+state 3
+
+    (2) Es -> E . SEPARATOR Es
+    (3) Es -> E .
+
+    SEPARATOR       shift and go to state 10
+    $end            reduce using rule 3 (Es -> E .)
+
+
+state 4
+
+    (4) E -> ITEMS .
+
+    SEPARATOR       reduce using rule 4 (E -> ITEMS .)
+    $end            reduce using rule 4 (E -> ITEMS .)
+
+
+state 5
+
+    (5) ITEMS -> ITEM . BREAK_LINE ITEMS
+    (6) ITEMS -> ITEM .
+
+    BREAK_LINE      shift and go to state 11
+    SEPARATOR       reduce using rule 6 (ITEMS -> ITEM .)
+    $end            reduce using rule 6 (ITEMS -> ITEM .)
+
+
+state 6
+
+    (7) ITEM -> AT_CONC .
+
+    BREAK_LINE      reduce using rule 7 (ITEM -> AT_CONC .)
+    SEPARATOR       reduce using rule 7 (ITEM -> AT_CONC .)
+    $end            reduce using rule 7 (ITEM -> AT_CONC .)
+
+
+state 7
+
+    (9) ITEM -> LING .
+
+    BREAK_LINE      reduce using rule 9 (ITEM -> LING .)
+    SEPARATOR       reduce using rule 9 (ITEM -> LING .)
+    $end            reduce using rule 9 (ITEM -> LING .)
+
+
+state 8
+
+    (8) AT_CONC -> VAL . : VAL
+
+    :               shift and go to state 12
+
+
+state 9
+
+    (10) LING -> IDLING . : BREAK_LINE TS
+
+    :               shift and go to state 13
+
+
+state 10
+
+    (2) Es -> E SEPARATOR . Es
+    (2) Es -> . E SEPARATOR Es
+    (3) Es -> . E
+    (4) E -> . ITEMS
+    (5) ITEMS -> . ITEM BREAK_LINE ITEMS
+    (6) ITEMS -> . ITEM
+    (7) ITEM -> . AT_CONC
+    (9) ITEM -> . LING
+    (8) AT_CONC -> . VAL : VAL
+    (10) LING -> . IDLING : BREAK_LINE TS
+
+    VAL             shift and go to state 8
+    IDLING          shift and go to state 9
+
+    E                              shift and go to state 3
+    Es                             shift and go to state 14
+    ITEMS                          shift and go to state 4
+    ITEM                           shift and go to state 5
+    AT_CONC                        shift and go to state 6
+    LING                           shift and go to state 7
+
+state 11
+
+    (5) ITEMS -> ITEM BREAK_LINE . ITEMS
+    (5) ITEMS -> . ITEM BREAK_LINE ITEMS
+    (6) ITEMS -> . ITEM
+    (7) ITEM -> . AT_CONC
+    (9) ITEM -> . LING
+    (8) AT_CONC -> . VAL : VAL
+    (10) LING -> . IDLING : BREAK_LINE TS
+
+    VAL             shift and go to state 8
+    IDLING          shift and go to state 9
+
+    ITEM                           shift and go to state 5
+    ITEMS                          shift and go to state 15
+    AT_CONC                        shift and go to state 6
+    LING                           shift and go to state 7
+
+state 12
+
+    (8) AT_CONC -> VAL : . VAL
+
+    VAL             shift and go to state 16
+
+
+state 13
+
+    (10) LING -> IDLING : . BREAK_LINE TS
+
+    BREAK_LINE      shift and go to state 17
+
+
+state 14
+
+    (2) Es -> E SEPARATOR Es .
+
+    $end            reduce using rule 2 (Es -> E SEPARATOR Es .)
+
+
+state 15
+
+    (5) ITEMS -> ITEM BREAK_LINE ITEMS .
+
+    SEPARATOR       reduce using rule 5 (ITEMS -> ITEM BREAK_LINE ITEMS .)
+    $end            reduce using rule 5 (ITEMS -> ITEM BREAK_LINE ITEMS .)
+
+
+state 16
+
+    (8) AT_CONC -> VAL : VAL .
+
+    BREAK_LINE      reduce using rule 8 (AT_CONC -> VAL : VAL .)
+    SEPARATOR       reduce using rule 8 (AT_CONC -> VAL : VAL .)
+    $end            reduce using rule 8 (AT_CONC -> VAL : VAL .)
+
+
+state 17
+
+    (10) LING -> IDLING : BREAK_LINE . TS
+    (11) TS -> . T TS
+    (12) TS -> . T
+    (13) T -> . # VAL BREAK_LINE AT_TS
+
+    #               shift and go to state 20
+
+    TS                             shift and go to state 18
+    T                              shift and go to state 19
+
+state 18
+
+    (10) LING -> IDLING : BREAK_LINE TS .
+
+    BREAK_LINE      reduce using rule 10 (LING -> IDLING : BREAK_LINE TS .)
+    SEPARATOR       reduce using rule 10 (LING -> IDLING : BREAK_LINE TS .)
+    $end            reduce using rule 10 (LING -> IDLING : BREAK_LINE TS .)
+
+
+state 19
+
+    (11) TS -> T . TS
+    (12) TS -> T .
+    (11) TS -> . T TS
+    (12) TS -> . T
+    (13) T -> . # VAL BREAK_LINE AT_TS
+
+    BREAK_LINE      reduce using rule 12 (TS -> T .)
+    SEPARATOR       reduce using rule 12 (TS -> T .)
+    $end            reduce using rule 12 (TS -> T .)
+    #               shift and go to state 20
+
+    T                              shift and go to state 19
+    TS                             shift and go to state 21
+
+state 20
+
+    (13) T -> # . VAL BREAK_LINE AT_TS
+
+    VAL             shift and go to state 22
+
+
+state 21
+
+    (11) TS -> T TS .
+
+    BREAK_LINE      reduce using rule 11 (TS -> T TS .)
+    SEPARATOR       reduce using rule 11 (TS -> T TS .)
+    $end            reduce using rule 11 (TS -> T TS .)
+
+
+state 22
+
+    (13) T -> # VAL . BREAK_LINE AT_TS
+
+    BREAK_LINE      shift and go to state 23
+
+
+state 23
+
+    (13) T -> # VAL BREAK_LINE . AT_TS
+    (14) AT_TS -> . AT_T BREAK_LINE AT_TS
+    (15) AT_TS -> .
+    (16) AT_T -> . + VAL : VAL
+
+    #               reduce using rule 15 (AT_TS -> .)
+    BREAK_LINE      reduce using rule 15 (AT_TS -> .)
+    SEPARATOR       reduce using rule 15 (AT_TS -> .)
+    $end            reduce using rule 15 (AT_TS -> .)
+    +               shift and go to state 26
+
+    AT_TS                          shift and go to state 24
+    AT_T                           shift and go to state 25
+
+state 24
+
+    (13) T -> # VAL BREAK_LINE AT_TS .
+
+    #               reduce using rule 13 (T -> # VAL BREAK_LINE AT_TS .)
+    BREAK_LINE      reduce using rule 13 (T -> # VAL BREAK_LINE AT_TS .)
+    SEPARATOR       reduce using rule 13 (T -> # VAL BREAK_LINE AT_TS .)
+    $end            reduce using rule 13 (T -> # VAL BREAK_LINE AT_TS .)
+
+
+state 25
+
+    (14) AT_TS -> AT_T . BREAK_LINE AT_TS
+
+    BREAK_LINE      shift and go to state 27
+
+
+state 26
+
+    (16) AT_T -> + . VAL : VAL
+
+    VAL             shift and go to state 28
+
+
+state 27
+
+    (14) AT_TS -> AT_T BREAK_LINE . AT_TS
+    (14) AT_TS -> . AT_T BREAK_LINE AT_TS
+    (15) AT_TS -> .
+    (16) AT_T -> . + VAL : VAL
+
+    #               reduce using rule 15 (AT_TS -> .)
+    BREAK_LINE      reduce using rule 15 (AT_TS -> .)
+    SEPARATOR       reduce using rule 15 (AT_TS -> .)
+    $end            reduce using rule 15 (AT_TS -> .)
+    +               shift and go to state 26
+
+    AT_T                           shift and go to state 25
+    AT_TS                          shift and go to state 29
+
+state 28
+
+    (16) AT_T -> + VAL . : VAL
+
+    :               shift and go to state 30
+
+
+state 29
+
+    (14) AT_TS -> AT_T BREAK_LINE AT_TS .
+
+    #               reduce using rule 14 (AT_TS -> AT_T BREAK_LINE AT_TS .)
+    BREAK_LINE      reduce using rule 14 (AT_TS -> AT_T BREAK_LINE AT_TS .)
+    SEPARATOR       reduce using rule 14 (AT_TS -> AT_T BREAK_LINE AT_TS .)
+    $end            reduce using rule 14 (AT_TS -> AT_T BREAK_LINE AT_TS .)
+
+
+state 30
+
+    (16) AT_T -> + VAL : . VAL
+
+    VAL             shift and go to state 31
+
+
+state 31
+
+    (16) AT_T -> + VAL : VAL .
+
+    BREAK_LINE      reduce using rule 16 (AT_T -> + VAL : VAL .)
+
