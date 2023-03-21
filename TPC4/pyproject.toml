@@ -1,0 +1,15 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "tokenizador"
+authors = [{name = "Lcmj", email = "jorge.lima.ne@gmail.com"}]
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: MIT License"]
+dynamic = ["version", "description"]
+dependencies = ["spacy"]
+readme = "README.md"
+
+[project.scipts]
+tok = "tokenizador:tokenizador"

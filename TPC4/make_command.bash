@@ -1,7 +1,7 @@
 chmod +x tokenizador.py
 
-cp tokenizador.py tokenizador
+cp tokenizador.py tokenizadorb
 
-cp tokenizador ~/bin
+cp tokenizadorb ~/bin
 
 export PATH=$PATH":$HOME/bin"
