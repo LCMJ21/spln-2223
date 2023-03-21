@@ -9,6 +9,16 @@ import sys
 import fileinput
 import re
 
+def load_abrevs():
+    abrevs = {}
+    file = open("abrevs.txt", "r")
+    ln_list = file.read().split("#")[1:]
+    for ln in ln_list:
+        lang, abrevs = ln.split("\n")
+        if len(abrevs) > 0:
+            abrevs[lang] = abrevs.split("\n")
+    return abrevs
+
 
 def tokenizador():
     text = ""

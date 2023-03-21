@@ -13,3 +13,4 @@ readme = "README.md"
 
 [project.scipts]
 tok = "tokenizador:tokenizador"
+abrev = "tokenizador:load_abrevs"
