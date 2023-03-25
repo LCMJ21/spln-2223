@@ -1,7 +1,9 @@
 # TPC2
 
-- Harry_Potter_e_A_Pedra_Filosofal copy→ Ficheiro de texto com o livro Harry Potter and the Philosopher's Stone
 - Harry_Potter_adpt → Ficheiro de texto com o livro Harry Potter and the Philosopher's Stone alterado manualmente
-- HP_proc → Resultado da aplicação do script tokenizador.py
-- make_command.bash → Script fazer com que tokenizador.py possa ser executado como um comando
-- tokenizador.py → Script que tokeniza o livro Harry Potter and the Philosopher's Stone
+- __init__.py → Script que tokeniza um livro
+- utils.py → Script com funções auxiliares
+- conf/abrev.txt → Ficheiro com abreviaturas
+- conf/trans.txt → Ficheiro com traduções de keywords
+
+- Não funciona devido a utils não estar a ser importado corretamente TODO

@@ -6,6 +6,7 @@ Tokenizador for books.
 __version__ = "0.1.0"
 
 import re
+
 from utils import *
 
 list_poemas = []
@@ -19,7 +20,7 @@ def punctuation(text):
     return re.sub(regex_punc,r'\1 \2 \3',text)
 
 def chapters(text):
-    regex_cap = r'.*(CAPÍTULO +(\w+|\d+)).*\n((.+\n)*)'
+    regex_cap = rf".*({keywords['Chapter']} +(\w+|\d+)).*\n((.+\n)*)"
     return re.sub(regex_cap,r'#\1\n[\3]\n',text)
 
 def paragraphs(text):
@@ -33,7 +34,9 @@ def sentences_single_line(text):
 def sentences_per_line(text):
     regex_sen = r'([^.!?][.?!])(\s|[^.])'
     text = re.sub(regex_sen,r'\1\2\n',text)
-    regex_abrv = r'((Sr)|(Sra))\.(\s*)\n'
+
+    abrev = '|'.join(list(map(lambda x : f"({x})" , keywords['abrevs'])))
+    regex_abrv = rf'({abrev})\.(\s*)\n'
     return re.sub(regex_abrv,r'\1.\4',text)
 
 def save_poems(poema):
@@ -41,7 +44,7 @@ def save_poems(poema):
     return f">>{len(list_poemas)}<<"
 
 def poems(text):
-    if options['poems']:
+    if options.poems:
         regex_poema = r'<poem>(.*?)</poem>'
         text = re.sub(regex_poema,save_poems,text,flags=re.S)
         print(list_poemas)
@@ -65,9 +68,10 @@ def tokenizer():
     # 6. Tratar Poemas (tagged)
     text = poems(text)
 
-    output(text)
+    #output(text)
 
 if __name__ == "__main__":
     print(f'Tokenizer version={__version__}')
     options = read_args()
+    keywords = get_keywords(options.language)
     tokenizer()
