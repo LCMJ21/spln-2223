@@ -5,5 +5,3 @@
 - utils.py → Script com funções auxiliares
 - conf/abrev.txt → Ficheiro com abreviaturas
 - conf/trans.txt → Ficheiro com traduções de keywords
-
-- Não funciona devido a utils não estar a ser importado corretamente TODO

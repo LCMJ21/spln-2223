@@ -7,7 +7,7 @@ __version__ = "0.1.0"
 
 import re
 
-from utils import *
+from .utils import *
 
 list_poemas = []
 
@@ -19,7 +19,7 @@ def punctuation(text):
     regex_punc = r'([.!,?;:' + r'\"\-\”\–\`()\[\]])?(\w+)([.!,?;:' + r'\"\-\”\–\`()\[\]])'
     return re.sub(regex_punc,r'\1 \2 \3',text)
 
-def chapters(text):
+def chapters(keywords, text):
     regex_cap = rf".*({keywords['Chapter']} +(\w+|\d+)).*\n((.+\n)*)"
     return re.sub(regex_cap,r'#\1\n[\3]\n',text)
 
@@ -31,7 +31,7 @@ def sentences_single_line(text):
     regex_sen = r'([^.!?])\n+([^.!?])'
     return re.sub(regex_sen,r'\1 \2',text)
 
-def sentences_per_line(text):
+def sentences_per_line(keywords, text):
     regex_sen = r'([^.!?][.?!])(\s|[^.])'
     text = re.sub(regex_sen,r'\1\2\n',text)
 
@@ -43,7 +43,7 @@ def save_poems(poema):
     list_poemas.append(poema[1])
     return f">>{len(list_poemas)}<<"
 
-def poems(text):
+def poems(options, text):
     if options.poems:
         regex_poema = r'<poem>(.*?)</poem>'
         text = re.sub(regex_poema,save_poems,text,flags=re.S)
@@ -51,6 +51,10 @@ def poems(text):
     return text
 
 def tokenizer():
+
+    options = read_args()
+    keywords = get_keywords(options.language)
+
     text = input()
 
     # 0. Quebra de pagina
@@ -58,20 +62,18 @@ def tokenizer():
     # 1. Separar pontuação das palavras
     text = punctuation(text)
     # 2. Marcar capitulos
-    text = chapters(text)
+    text = chapters(keywords, text)
     # 3. Separar paragrafos de linhas pequenas
     text = paragraphs(text)
     # 4. Juntar linhas da mesma frase
     text = sentences_single_line(text)
     # 5. Uma frase por linha
-    text = sentences_per_line(text)
+    text = sentences_per_line(keywords, text)
     # 6. Tratar Poemas (tagged)
-    text = poems(text)
+    text = poems(options, text)
 
     #output(text)
 
 if __name__ == "__main__":
     print(f'Tokenizer version={__version__}')
-    options = read_args()
-    keywords = get_keywords(options.language)
     tokenizer()

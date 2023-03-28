@@ -7,7 +7,10 @@ def get_keywords(lang):
     keywords = {}
     keywords['abrevs'] = abrevs[lang]
     for pal in trans:
-        keywords[pal] = trans[pal][lang]
+        if lang != 'en':
+            keywords[pal] = trans[pal][lang]
+        else:
+            keywords[pal] = pal
     return keywords
 
 
@@ -54,5 +57,5 @@ def output(text, output='stdout'):
 def read_args():
     parser = argparse.ArgumentParser(description='Procces tokenizar options.')
     parser.add_argument('-p', '--poems',action='store_true')
-    parser.add_argument("-l", '--language', default='eng', choices=['eng', 'pt', 'fr'])
+    parser.add_argument("-l", '--language', default='en', choices=['en', 'pt', 'fr'])
     return parser.parse_args()

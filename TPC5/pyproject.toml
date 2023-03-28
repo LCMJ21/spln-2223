@@ -11,4 +11,4 @@ dynamic = ["version", "description"]
 readme = "README.md"
 
 [project.scripts]
-tok = "tokenizador:tokenizador"
+tok = "tokenizador:tokenizer"
